@@ -30,6 +30,8 @@ $foto = !empty($data['foto']) ? $data['foto'] : 'default.jpg';
 
 // 6. Untuk highlight menu
 $halaman = basename($_SERVER['PHP_SELF']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -68,30 +70,29 @@ $halaman = basename($_SERVER['PHP_SELF']);
       </div>
     </div>
 
-    <nav class="flex-1 p-2 space-y-2 overflow-y-auto">
-      <?php
-      // helper untuk class aktif
-      function navItem($file, $label, $icon)
-      {
-        global $halaman;
-        $active = $halaman === $file
-          ? 'bg-blue-800 pointer-events-none'
-          : 'hover:bg-blue-800';
-        return "<a href=\"$file\" class=\"flex items-center px-3 py-2 rounded $active\">
-                    <i class=\"fas fa-$icon mr-2\"></i> $label
-                  </a>";
-      }
-      ?>
-      <?php echo navItem('dashboard.php',       'Dashboard',     'tachometer-alt'); ?>
-      <?php echo navItem('biodata.php',         'Biodata',       'id-card'); ?>
-      <?php echo navItem('jadwal_pelajaran.php', 'Jadwal Pelajaran', 'calendar-alt'); ?>
-      <?php echo navItem('cek_absensi.php',     'Cek Absensi',   'check-circle'); ?>
-      <?php echo navItem('nilai.php',           'Hasil Nilai Ujian', 'poll'); ?>
-      <?php echo navItem('cetak_pdf.php',       'Cetak PDF',     'file-pdf'); ?>
-      <a href="../logout.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
-        <i class="fas fa-sign-out-alt mr-2"></i> Logout
-      </a>
-    </nav>
+      <nav class="flex-1 p-2 space-y-2 overflow-y-auto">
+        <a href="dashboard.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+        </a>
+        <a href="biodata.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-id-card mr-2"></i> Biodata
+        </a>
+        <a href="jadwal_pelajaran.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-calendar-alt mr-2"></i> Jadwal Pelajaran
+        </a>
+        <a href="cek_absensi.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-check-circle mr-2"></i> Cek Absensi
+        </a>
+        <a href="nilai.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-poll mr-2"></i> Hasil Nilai Ujian
+        </a>
+        <a href="cetak_pdf.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-file-pdf mr-2"></i> Cetak PDF
+        </a>
+        <a href="../logout.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800">
+          <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        </a>
+      </nav>
   </aside>
 
   <!-- Main content -->

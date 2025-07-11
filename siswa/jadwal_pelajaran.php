@@ -47,11 +47,12 @@ $nis  = $data ? $data['Username'] : "-";
         <p class="text-xs text-blue-200">Siswa</p>
       </div>
     </div>
+    
     <nav class="flex-1 p-2 space-y-2 overflow-y-auto">
       <a href="dashboard.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-      <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-id-card mr-2"></i> Biodata</a>
+      <a href="biodata.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-id-card mr-2"></i> Biodata</a>
       <a href="jadwal_pelajaran.php" class="flex items-center px-3 py-2 rounded bg-blue-800"><i class="fas fa-calendar-alt mr-2"></i> Jadwal Pelajaran</a>
-      <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-check-circle mr-2"></i> Cek Absensi</a>
+      <a href="cek_absensi.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-check-circle mr-2"></i> Cek Absensi</a>
       <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-poll mr-2"></i> Hasil Nilai Ujian</a>
       <a href="#" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-file-pdf mr-2"></i> Cetak PDF</a>
       <a href="../logout.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>

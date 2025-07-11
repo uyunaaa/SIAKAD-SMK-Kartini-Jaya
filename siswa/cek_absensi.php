@@ -59,6 +59,8 @@ $absensi = mysqli_query($koneksi, "SELECT * FROM absensi WHERE Username = '$user
       <a href="biodata.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-id-card mr-2"></i> Biodata</a>
       <a href="jadwal_pelajaran.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-calendar-alt mr-2"></i> Jadwal Pelajaran</a>
       <a href="cek_absensi.php" class="flex items-center px-3 py-2 rounded bg-blue-800"><i class="fas fa-check-circle mr-2"></i> Cek Absensi</a>
+       <a href="cetak_pdf.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"> <i class="fas fa-file-pdf mr-2"></i> Cetak PDF
+      </a>
       <a href="nilai.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-poll mr-2"></i> Nilai Ujian</a>
       <a href="../logout.php" class="flex items-center px-3 py-2 rounded hover:bg-blue-800"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
     </nav>
