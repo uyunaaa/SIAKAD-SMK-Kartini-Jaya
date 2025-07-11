@@ -3,7 +3,7 @@ session_start();
 require_once '../koneksi.php';
 
 // 1. Redirect jika belum login
-if (! !isset($_SESSION['UserID'])) {
+if (! isset($_SESSION['UserID'])) {
   header('Location: ../index.php');
   exit;
 }

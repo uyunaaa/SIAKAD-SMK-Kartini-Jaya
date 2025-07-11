@@ -1,5 +1,9 @@
 <?php
 session_start();
+// echo '<pre>'; var_dump(session_id(), $_SESSION); echo '</pre>';
+// exit;
+// …then remove this as soon as you confirm it’s correct.
+
 
 // Cek login & role
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'siswa') {
