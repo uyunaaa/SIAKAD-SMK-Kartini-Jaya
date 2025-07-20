@@ -1,118 +1,182 @@
+<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Registrasi SIAKAD SMK Kartini Jaya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Data Siswa</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col md:flex-row">
 
+</head>
+<body class="flex flex-col md:flex-row min-h-screen">
   <!-- Panel Kiri -->
-  <div class="hidden md:flex flex-col w-1/3 bg-blue-700 text-white relative">
-    <div class="p-8 z-10">
-      <h1 class="text-3xl font-bold mb-2">SIAKAD</h1>
-      <h2 class="text-lg mb-6">SMK Kartini Jaya</h2>
-      <h3 class="font-semibold text-sm mb-2">Informasi Pendaftaran</h3>
-      <p class="text-sm">Tahun Ajaran 2025/2026</p>
-      <p class="text-xs italic mb-1">Gelombang 3 s.d. 31 Juli 2025</p>
-      <p class="text-sm mb-1">Biaya Registrasi: <span class="font-bold">Rp 0</span></p>
-      <p class="text-sm mb-6">Uang Pangkal: <span class="font-bold">Rp 5.650.000</span></p>
-      <p class="text-xs leading-tight">Informasi selengkapnya, <span class="underline cursor-pointer">klik di sini</span></p>
+  <div class="md:w-2/5 w-full h-64 md:h-auto relative">
+    <img src="https://storage.googleapis.com/a1aa/image/c973f1b2-64f7-44fe-10d0-3e54091e6a3e.jpg"
+         alt="Gedung SMK"
+         class="absolute inset-0 w-full h-full object-cover opacity-60 -z-10" />
+    <div class="absolute inset-0 bg-blue-800 bg-opacity-70 z-0"></div>
+    <div class="relative z-10 flex flex-col justify-center items-start px-6 py-8 h-full text-white">
+      <h1 class="text-2xl font-bold mb-2">SIAKAD SMK Kartini Jaya</h1>
+      <p class="mb-4 text-sm">Sistem Informasi Akademik</p>
+      <ul class="space-y-2 text-xs">
+        <li>🗓 Kalender Akademik 2024/2025</li>
+        <li>📢 Pengumuman Ujian Semester</li>
+        <li>📘 Daftar Ulang Tahun Ajaran Baru</li>
+      </ul>
     </div>
-    <img src="https://storage.googleapis.com/a1aa/image/2f9c89b9-fa72-4fb9-e43e-7415e6ef2b4c.jpg"
-         alt="Gedung sekolah"
-         class="absolute inset-0 w-full h-full object-cover opacity-20" />
+
   </div>
 
-  <!-- Panel Kanan -->
-  <div class="flex-1 flex justify-center items-start pt-20 px-6 md:px-20">
-    <div class="w-full max-w-md">
-      <h1 class="text-xl font-bold mb-6">Registrasi Siswa Baru</h1>
+  <!-- Form Kanan -->
+  <div class="w-full md:w-3/5 bg-white p-8">
+    <h2 class="text-xl font-semibold mb-6">Form Data Siswa</h2>
 
-      <!-- Tab Login/Register -->
-      <div class="flex space-x-6 mb-6 border-b border-gray-300">
-        <a href="index.php" class="text-xs text-gray-600 pb-1 hover:text-blue-600">Login</a>
-        <span class="text-xs text-black font-semibold border-b-2 border-blue-500 pb-1">Register</span>
-      </div>
-
-      <!-- Form Registrasi -->
-      <form action="register_proses.php" method="POST" class="space-y-4">
-
-        <!-- Nama Lengkap -->
-        <input name="nama" type="text" placeholder="Nama Lengkap" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
-
-        <!-- Email -->
-        <input name="email" type="email" placeholder="Email Aktif" required
-               class="w-full bg-gray-100 rounded px-4 py-2 text-sm border border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500" />
-
-        <!-- No HP -->
-        <div class="flex items-center bg-gray-100 rounded border border-transparent focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-          <span class="text-xs text-gray-700 px-3 select-none">+62</span>
-          <input name="no_hp" type="tel" placeholder="Nomor WhatsApp" required
-                 class="flex-1 bg-transparent text-sm py-2 pr-4 focus:outline-none" />
-        </div>
+    <form action="register_ortu.php" method="post" enctype="multipart/form-data">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- NIS -->
-        <input name="nis" type="text" placeholder="NIS" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        <div>
+          <label class="block font-semibold mb-1" for="nis">NIS:</label>
+          <input type="text" name="nis" id="nis" required class="w-full border px-3 py-2 rounded" />
+        </div>
 
         <!-- NISN -->
-        <input name="nisn" type="text" placeholder="NISN" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        <div>
+          <label class="block font-semibold mb-1" for="nisn">NISN:</label>
+          <input type="text" name="nisn" id="nisn" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Nama Lengkap -->
+        <div>
+          <label class="block font-semibold mb-1" for="nama_lengkap">Nama Lengkap:</label>
+          <input type="text" name="nama_lengkap" id="nama_lengkap" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1" for="username">Username:</label>
+          <input type="text" name="username" id="username" required 
+         class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Tempat Lahir -->
+        <div>
+          <label class="block font-semibold mb-1" for="tempat_lahir">Tempat Lahir:</label>
+          <input type="text" name="tempat_lahir" id="tempat_lahir" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Tanggal Lahir -->
+        <div>
+          <label class="block font-semibold mb-1" for="tanggal_lahir">Tanggal Lahir:</label>
+          <input type="date" name="tanggal_lahir" id="tanggal_lahir" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Jenis Kelamin -->
+        <div>
+          <label class="block font-semibold mb-1" for="jenis_kelamin">Jenis Kelamin:</label>
+          <select name="jenis_kelamin" id="jenis_kelamin" required class="w-full border px-3 py-2 rounded">
+            <option value="">Pilih</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+        </div>
 
         <!-- Kelas -->
-        <input name="kelas" type="text" placeholder="Kelas (contoh: X)" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        <div>
+          <label class="block font-semibold mb-1" for="kelas">Kelas:</label>
+          <select name="kelas" id="kelas" required class="w-full border px-3 py-2 rounded">
+            <option value="">Pilih</option>
+            <option value="X">X</option>
+            <option value="XI">XI</option>
+            <option value="XII">XII</option>
+          </select>
+        </div>
 
         <!-- Jurusan -->
-        <input name="jurusan" type="text" placeholder="Jurusan (contoh: RPL / DKV)" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        <div>
+          <label class="block font-semibold mb-1" for="jurusan">Jurusan:</label>
+          <select name="jurusan" id="jurusan" required class="w-full border px-3 py-2 rounded">
+            <option value="">Pilih</option>
+            <option value="AKUNTANSI">AKUNTANSI</option>
+            <option value="TEKNIK OTOMOTIF">TEKNIK OTOMOTIF</option>
+            <option value="TEKNIK PERMESINAN">TEKNIK PERMESINAN</option>
+            <option value="LAYANAN KESEHATAN">LAYANAN KESEHATAN</option>
+            <option value="DESAIN KOMUNIKASI VISUAL">DESAIN KOMUNIKASI VISUAL</option>
+          </select>
+        </div>
 
-        <!-- Tahun Masuk -->
-        <input name="tahunmasuk" type="number" placeholder="Tahun Masuk (contoh: 2025)" required
-               class="w-full border border-blue-400 rounded px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        <!-- Agama -->
+        <div>
+          <label class="block font-semibold mb-1" for="agama">Agama:</label>
+          <select name="agama" id="agama" required class="w-full border px-3 py-2 rounded">
+            <option value="">Pilih</option>
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Budha">Budha</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <!-- No HP -->
+        <div>
+          <label class="block font-semibold mb-1" for="no_hp">No HP:</label>
+          <input type="text" name="no_hp" id="no_hp" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block font-semibold mb-1" for="email">Email:</label>
+          <input type="email" name="email" id="email" required class="w-full border px-3 py-2 rounded" />
+        </div>
+
+         <!-- Alamat -->
+        <div>
+          <label class="block font-semibold mb-1" for="alamat">Alamat:</label>
+          <input type="text" name="alamat" id="alamat" required 
+         class="w-full border px-3 py-2 rounded" />
+        </div>
+
+        <!-- Foto -->
+        <div>
+          <label class="block font-semibold mb-1" for="foto">Foto Siswa:</label>
+          <input type="file" name="foto" id="foto" accept="image/*" class="w-full border px-3 py-2 rounded" />
+        </div>
 
         <!-- Password -->
         <div class="relative">
-          <input name="password" type="password" placeholder="Password" required
-                 class="w-full bg-gray-100 rounded px-4 py-2 text-sm border border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500" />
-          <button type="button" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
-            <i class="fas fa-eye"></i>
-          </button>
+          <label class="block font-semibold mb-1" for="password">Password:</label>
+          <input type="password" name="password" id="password" required class="w-full border px-3 py-2 rounded pr-10" />
+          <button type="button" onclick="togglePassword('password')" class="absolute right-3 top-8 text-sm text-gray-500">👁️</button>
         </div>
 
         <!-- Konfirmasi Password -->
         <div class="relative">
-          <input name="konfirmasi" type="password" placeholder="Konfirmasi Password" required
-                 class="w-full bg-gray-100 rounded px-4 py-2 text-sm border border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500" />
-          <button type="button" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
-            <i class="fas fa-eye"></i>
-          </button>
+          <label class="block font-semibold mb-1" for="konfirmasi_password">Konfirmasi Password:</label>
+          <input type="password" name="konfirmasi_password" id="konfirmasi_password" required class="w-full border px-3 py-2 rounded pr-10" />
+          <button type="button" onclick="togglePassword('konfirmasi_password')" class="absolute right-3 top-8 text-sm text-gray-500">👁️</button>
         </div>
+        
+<div class="mt-6 text-center">
+  <button type="submit"
+          class="w-fit bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded mx-auto block">
+    Selanjutnya
+  </button>
 
-        <!-- Tombol Submit -->
-        <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md text-sm">
-          Daftar Akun
-        </button>
-      </form>
+  <p class="mt-4 text-sm text-gray-600">
+    Sudah punya akun?
+    <a href="index.php" class="text-blue-600 hover:underline font-semibold">Login di sini</a>
+  </p>
+</div>
 
-      <!-- Footer Link -->
-      <p class="mt-6 text-xs text-gray-700">
-        Sudah punya akun?
-        <a href="index.php" class="text-blue-600 font-semibold hover:underline">Login di sini</a><br />
-        atau <a href="forgot.php" class="text-blue-600 font-semibold hover:underline">Lupa kata sandi</a>
-      </p>
-    </div>
-  </div>
+
+
+  <!-- Script untuk toggle password -->
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
 </body>
 </html>

@@ -27,26 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $username = $koneksi->real_escape_string(trim($_POST['username']));
     $password = $_POST['password'];
 
-    // ambil hanya kolom yang diperlukan
-    $sql    = "SELECT Id AS id, Username, Password, Role, Nama_Lengkap 
-               FROM users 
-               WHERE Username = '$username' 
-               LIMIT 1";
+    $sql = "SELECT Id AS id, Username, Password, Role, Nama_Lengkap 
+            FROM users 
+            WHERE Username = '$username' 
+            LIMIT 1";
     $result = $koneksi->query($sql);
 
     if ($result && $row = $result->fetch_assoc()) {
         if (password_verify($password, $row['Password'])) {
-            // regenerasi session ID (keamanan)
             session_regenerate_id(true);
 
-            // simpan data ke session
             $_SESSION['login']    = true;
             $_SESSION['UserID']   = (int)$row['id'];
             $_SESSION['username'] = $row['Username'];
             $_SESSION['role']     = $row['Role'];
             $_SESSION['nama']     = $row['Nama_Lengkap'];
 
-            // redirect langsung sesuai role
             header("Location: {$_SESSION['role']}/dashboard.php");
             exit;
         } else {
@@ -56,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         $error = 'Username tidak ditemukan!';
     }
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -71,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
   <!-- Notifikasi error -->
   <?php if ($error): ?>
-    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-lg z-50">
       <?php echo htmlspecialchars($error); ?>
     </div>
   <?php endif; ?>
