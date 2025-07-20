@@ -58,12 +58,6 @@ $nama = isset($_SESSION['nama']) ? $_SESSION['nama'] : 'User';
     <a href="data_jadwal.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
       <i class="fas fa-calendar-alt w-4"></i><span>Kelola Jadwal</span>
     </a>
-    <a href="nilai_siswa.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
-      <i class="fas fa-clipboard-list w-4"></i><span>Lihat Nilai Siswa</span>
-    </a>
-    <a href="pengaturan_akun.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
-      <i class="fas fa-user-cog w-4"></i><span>Pengaturan Akun</span>
-    </a>
     <a href="../logout.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-red-600 text-sm">
       <i class="fas fa-sign-out-alt w-4"></i><span>Logout</span>
     </a>

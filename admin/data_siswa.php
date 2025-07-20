@@ -44,34 +44,50 @@ $result = mysqli_query($koneksi, $sql);
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Kelola Data Siswa</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 flex">
+<body class="flex min-h-screen bg-gray-100">
 
+  
   <!-- Sidebar -->
-  <aside class="w-64 bg-blue-900 text-white flex flex-col min-h-screen">
-    <div class="p-4 font-bold text-lg border-b border-blue-700">SIAKAD SMK</div>
-    <div class="flex items-center p-4 border-b border-blue-700">
-      <img src="../uploads/<?php echo $foto; ?>" class="w-10 h-10 rounded-full object-cover" alt="Foto Admin" />
-      <div class="ml-3">
-        <p class="font-semibold text-sm"><?php echo $nama; ?></p>
-        <p class="text-xs text-blue-200">Admin</p>
-      </div>
+ <!-- Sidebar -->
+<aside id="sidebar" class="w-64 bg-blue-900 text-white flex flex-col fixed md:static inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40">
+  <div class="p-4 font-bold text-lg border-b border-blue-700">SIAKAD SMK</div>
+  <div class="flex items-center p-4 border-b border-blue-700">
+    <img src="uploads/<?php echo $foto; ?>" class="w-10 h-10 rounded-full object-cover" alt="Foto Admin" />
+    <div class="ml-3">
+      <p class="font-semibold text-sm md:text-base"><?php echo $nama; ?></p>
+      <p class="text-xs text-blue-200">Admin</p>
     </div>
+  </div>
 
-    <nav class="mt-4 flex flex-col space-y-2 px-4 pb-4 flex-1 text-sm">
-      <a href="dashboard.php" class="px-3 py-2 rounded hover:bg-blue-700">Dashboard</a>
-      <a href="data_siswa.php" class="px-3 py-2 rounded bg-blue-700">Kelola Data Siswa</a>
-      <a href="data_guru.php" class="px-3 py-2 rounded hover:bg-blue-700">Kelola Data Guru</a>
-      <a href="data_jadwal.php" class="px-3 py-2 rounded hover:bg-blue-700">Kelola Jadwal</a>
-      <a href="nilai_siswa.php" class="px-3 py-2 rounded hover:bg-blue-700">Lihat Nilai Siswa</a>
-      <a href="pengaturan_akun.php" class="px-3 py-2 rounded hover:bg-blue-700">Pengaturan Akun</a>
-      <a href="../logout.php" class="px-3 py-2 rounded hover:bg-red-600">Logout</a>
-    </nav>
-  </aside>
+  <nav class="mt-4 flex flex-col space-y-2 px-4 pb-4 flex-1 overflow-y-auto">
+    <a href="dashboard.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
+      <i class="fas fa-tachometer-alt w-4"></i><span>Dashboard</span>
+    </a>
+    <a href="data_siswa.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
+      <i class="fas fa-users w-4"></i><span>Kelola Data Siswa</span>
+    </a>
+    <a href="data_guru.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
+      <i class="fas fa-chalkboard-teacher w-4"></i><span>Kelola Data Guru</span>
+    </a>
+    <a href="data_jadwal.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-[#3e537a] text-sm">
+      <i class="fas fa-calendar-alt w-4"></i><span>Kelola Jadwal</span>
+    </a>
+    <a href="../logout.php" class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-red-600 text-sm">
+      <i class="fas fa-sign-out-alt w-4"></i><span>Logout</span>
+    </a>
+  </nav>
+</aside>
 
 
   <!-- Konten Utama -->
