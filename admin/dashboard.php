@@ -1,18 +1,19 @@
 <?php
 session_start();
-include '../koneksi.php';
 
 if (!isset($_SESSION['UserID'])) {
     header("Location: ../index.php");
-    exit();
+    exit;
 }
 
-$admin_username = $_SESSION['admin_username'];
-$qadmin = mysqli_query($conn, "SELECT * FROM admin WHERE username='$admin_username'");
-$dadmin = mysqli_fetch_assoc($qadmin);
+include '../koneksi.php'; // koneksi DB
 
-$foto = $dadmin['foto'];
-$nama = $dadmin['nama_lengkap'];
+$admin_id = $_SESSION['UserID'];
+$query = mysqli_query($koneksi, "SELECT * FROM admin WHERE id = '$admin_id'");
+$admin = mysqli_fetch_assoc($query);
+
+
+$nama = isset($_SESSION['nama']) ? $_SESSION['nama'] : 'User';
 ?>
 
 <!DOCTYPE html>
