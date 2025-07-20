@@ -14,14 +14,21 @@ $qadmin = mysqli_query($koneksi, "SELECT * FROM admin WHERE id='$admin_id'");
 $dadmin = mysqli_fetch_assoc($qadmin);
 
 if (!$dadmin) {
-    die("\u26a0\ufe0f Data admin tidak ditemukan untuk ID: $admin_id");
+    die("⚠️ Data admin tidak ditemukan untuk ID: $admin_id");
 }
 
 $foto = $dadmin['foto'];
 $nama = $dadmin['nama_admin'];
 
-// Ambil data guru
-$sql = "SELECT * FROM guru ORDER BY nama_lengkap ASC";
+// Ambil parameter pencarian
+$nip = isset($_GET['nip']) ? $_GET['nip'] : '';
+
+// Query data guru berdasarkan NIP jika dicari
+if (!empty($nip)) {
+    $sql = "SELECT * FROM guru WHERE NIP LIKE '%$nip%' ORDER BY nama_lengkap ASC";
+} else {
+    $sql = "SELECT * FROM guru ORDER BY nama_lengkap ASC";
+}
 $result = mysqli_query($koneksi, $sql);
 ?>
 
@@ -61,6 +68,18 @@ $result = mysqli_query($koneksi, $sql);
   <main class="flex-1 p-8">
     <h2 class="text-[#2f4a6f] font-semibold text-xl mb-6">Data Guru</h2>
 
+    <!-- Form Pencarian NIP -->
+    <form method="GET" class="mb-6">
+      <div class="flex items-center space-x-2">
+        <label for="nip" class="text-sm text-[#2f4a6f]">Cari berdasarkan NIP:</label>
+        <input type="text" id="nip" name="nip" value="<?= htmlspecialchars($nip) ?>"
+          class="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          placeholder="Masukkan NIP guru...">
+        <button type="submit"
+          class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition">Cari</button>
+      </div>
+    </form>
+
     <!-- Tabel Data Guru -->
     <div class="overflow-x-auto bg-white shadow-md rounded p-4">
       <table class="min-w-full text-sm text-left text-gray-700 border">
@@ -82,7 +101,7 @@ $result = mysqli_query($koneksi, $sql);
               echo "<td class='py-2 px-3 border'>{$no}</td>";
               echo "<td class='py-2 px-3 border'>{$row['nama_lengkap']}</td>";
               echo "<td class='py-2 px-3 border'>{$row['NIP']}</td>";
-              echo "<td class='py-2 px-3 border'>{$row['MataP']}</td>";
+              echo "<td class='py-2 px-3 border'>{$row['MataPelajaran']}</td>";
               echo "<td class='py-2 px-3 border'>{$row['no_hp']}</td>";
               echo "<td class='py-2 px-3 border'>
                       <a href='edit_guru.php?id={$row['id']}' class='text-blue-600 hover:underline'>Edit</a> |
@@ -90,6 +109,10 @@ $result = mysqli_query($koneksi, $sql);
                     </td>";
               echo "</tr>";
               $no++;
+          }
+
+          if ($no === 1) {
+              echo "<tr><td colspan='6' class='text-center text-gray-500 py-4'>Data tidak ditemukan.</td></tr>";
           }
           ?>
         </tbody>
