@@ -1,54 +1,35 @@
 
 <?php
 session_start();
-
-// ✅ Lokasi koneksi.php relatif ke folder siswa/
 include '../koneksi.php';
 
-// ✅ Gunakan nama session yang benar (disesuaikan)
 if (!isset($_SESSION['UserID'])) {
   header('Location: ../index.php');
   exit;
 }
 
-$user_id = $_SESSION['UserID']; // Harus sama dengan yang kamu simpan saat login
-
-$query = mysqli_query($koneksi, "SELECT * FROM siswa WHERE UserID = $user_id");
-$data = mysqli_fetch_assoc($query);
-
-require_once '../koneksi.php';
-
-// 1. Redirect jika belum login
-if (! isset($_SESSION['UserID'])) {
-  header('Location: ../index.php');
-  exit;
-}
-
-// 2. Ambil dan casting UserID
 $UserID = intval($_SESSION['UserID']);
-
-// 3. Query data siswa
 $sql    = "SELECT * FROM siswa WHERE UserID = $UserID LIMIT 1";
 $result = mysqli_query($koneksi, $sql);
 
-// 4. Jika tidak ada data, redirect atau tampilkan pesan
 if (!$result || mysqli_num_rows($result) === 0) {
-  // misal kembali ke dashboard
-  header('Location: dashboard.php?error=notfound');
+  // Bisa diarahkan ke halaman error khusus atau tampilkan pesan
+  echo "Data siswa tidak ditemukan.";
   exit;
 }
 
 $data = mysqli_fetch_assoc($result);
 
-// 5. Siapkan variabel untuk view
+// Untuk tampilan
 $nama = $data['nama_lengkap'];
 $foto = !empty($data['foto']) ? $data['foto'] : 'default.jpg';
 
-// 6. Untuk highlight menu
+
 $halaman = basename($_SERVER['PHP_SELF']);
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 

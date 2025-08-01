@@ -122,13 +122,11 @@ $kelas = isset($_GET['kelas']) ? $_GET['kelas'] : '';
   <option value="XII" <?= $kelas == 'XII' ? 'selected' : '' ?>>XII</option>
 </select>
 
-
-      <!-- Tombol -->
-      <button type="submit"
-        class="bg-[#2563eb] text-white font-semibold rounded px-4 py-1 hover:bg-[#1e40af] focus:outline-none focus:ring-2 focus:ring-blue-600">
-        Tampilkan
-      </button>
-    </form>
+<!-- Tombol -->
+<button type="submit"
+  class="bg-blue-600 text-white font-semibold rounded px-4 py-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  Tampilkan
+</button>
 
     <!-- Tabel -->
     <div class="overflow-x-auto bg-white shadow-md rounded p-4">

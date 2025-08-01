@@ -84,7 +84,7 @@ $nama = isset($_SESSION['nama']) ? $_SESSION['nama'] : 'User';
     <!-- Jumlah Guru -->
     <div class="bg-white shadow rounded-lg p-4">
       <h2 class="text-sm font-medium text-gray-500">Total Guru</h2>
-      <p class="text-2xl font-semibold text-[#2f3e5e]">25</p>
+      <p class="text-2xl font-semibold text-[#2f3e5e]">52</p>
     </div>
     <!-- Jumlah Kelas -->
     <div class="bg-white shadow rounded-lg p-4">

@@ -30,11 +30,12 @@ if (isset($_POST['simpan'])) {
     $alamat = $_POST['alamat'];
     $no_hp = $_POST['no_hp'];
     $email = $_POST['email'];
-    $kelas = $_POST['kelas'];
-    $jurusan = $_POST['jurusan'];
-    $tahun_masuk = $_POST['tahun_masuk'];
-    $provinsi = $_POST['provinsi'];
-    $kota = $_POST['kota'];
+    $Kelas = $_POST['Kelas'];
+    $Jurusan = $_POST['Jurusan'];
+    $TahunMasuk = $_POST['TahunMasuk'];
+    $TahunMasuk_sql = ($TahunMasuk == '' ? 'NULL' : $TahunMasuk);
+    $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
+    $kota = isset($_POST['kota']) ? $_POST['kota'] : '';
     
     // Data Ayah
     $nama_ayah = $_POST['nama_ayah'];
@@ -56,15 +57,20 @@ if (isset($_POST['simpan'])) {
     $penghasilan_ibu = $_POST['penghasilan_ibu'];
     $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
 
+    // Handle tanggal kosong
+    $tanggal_lahir_sql = ($tanggal_lahir == '' ? 'NULL' : "'$tanggal_lahir'");
+    $tgl_lahir_ayah_sql = ($tgl_lahir_ayah == '' ? 'NULL' : "'$tgl_lahir_ayah'");
+    $tgl_lahir_ibu_sql = ($tgl_lahir_ibu == '' ? 'NULL' : "'$tgl_lahir_ibu'");
+
     $query = "UPDATE siswa SET 
         NIS='$NIS', NISN='$NISN', nama_lengkap='$nama_lengkap', tempat_lahir='$tempat_lahir',
-        tanggal_lahir='$tanggal_lahir', jenis_kelamin='$jenis_kelamin', agama='$agama',
-        alamat='$alamat', no_hp='$no_hp', email='$email', kelas='$kelas',
-        jurusan='$jurusan', tahun_masuk='$tahun_masuk', provinsi='$provinsi', kota='$kota',
-        nama_ayah='$nama_ayah', nik_ayah='$nik_ayah', tgl_lahir_ayah='$tgl_lahir_ayah', 
+        tanggal_lahir=$tanggal_lahir_sql, jenis_kelamin='$jenis_kelamin', agama='$agama',
+        alamat='$alamat', no_hp='$no_hp', email='$email', Kelas='$Kelas',
+        Jurusan='$Jurusan', TahunMasuk=$TahunMasuk_sql, provinsi='$provinsi', kota='$kota',
+        nama_ayah='$nama_ayah', nik_ayah='$nik_ayah', tgl_lahir_ayah=$tgl_lahir_ayah_sql, 
         telp_ayah='$telp_ayah', email_ayah='$email_ayah', pendidikan_ayah='$pendidikan_ayah',
         penghasilan_ayah='$penghasilan_ayah', pekerjaan_ayah='$pekerjaan_ayah',
-        nama_ibu='$nama_ibu', nik_ibu='$nik_ibu', tgl_lahir_ibu='$tgl_lahir_ibu',
+        nama_ibu='$nama_ibu', nik_ibu='$nik_ibu', tgl_lahir_ibu=$tgl_lahir_ibu_sql,
         telp_ibu='$telp_ibu', email_ibu='$email_ibu', pendidikan_ibu='$pendidikan_ibu',
         penghasilan_ibu='$penghasilan_ibu', pekerjaan_ibu='$pekerjaan_ibu'
         WHERE id='$id'";
@@ -91,11 +97,11 @@ if (isset($_POST['simpan'])) {
         <h1 class="text-2xl font-bold mb-4">Edit Data Siswa</h1>
         <form method="POST">
             <div class="grid grid-cols-2 gap-4">
-              <input type="text" name="nis" value="<?= $data['NIS'] ?>" placeholder="NIS" class="border p-2 w-full mb-2">
-            <input type="text" name="nisn" value="<?= $data['NISN'] ?>" placeholder="NISN" class="border p-2 w-full mb-2">
-            <input type="text" name="kelas" value="<?= $data['kelas'] ?>" placeholder="Kelas" class="border p-2 w-full mb-2">
-            <input type="text" name="jurusan" value="<?= $data['jurusan'] ?>" placeholder="Jurusan" class="border p-2 w-full mb-2">
-            <input type="number" name="tahun_masuk" value="<?= $data['tahun_masuk'] ?>" placeholder="Tahun Masuk" class="border p-2 w-full mb-2">
+              <input type="text" name="NIS" value="<?= $data['NIS'] ?>" placeholder="NIS" class="border p-2 w-full mb-2">
+            <input type="text" name="NISN" value="<?= $data['NISN'] ?>" placeholder="NISN" class="border p-2 w-full mb-2">
+            <input type="text" name="Kelas" value="<?= $data['Kelas'] ?>" placeholder="Kelas" class="border p-2 w-full mb-2">
+            <input type="text" name="Jurusan" value="<?= $data['Jurusan'] ?>" placeholder="Jurusan" class="border p-2 w-full mb-2">
+            <input type="number" name="TahunMasuk" value="<?= $data['TahunMasuk'] ?>" placeholder="Tahun Masuk" class="border p-2 w-full mb-2">
             <input type="text" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>" placeholder="Nama Lengkap" class="border p-2 w-full mb-2">
             <input type="text" name="tempat_lahir" value="<?= $data['tempat_lahir'] ?>" placeholder="Tempat Lahir" class="border p-2 w-full mb-2">
             <input type="date" name="tanggal_lahir" value="<?= $data['tanggal_lahir'] ?>" class="border p-2 w-full mb-2">
@@ -107,6 +113,8 @@ if (isset($_POST['simpan'])) {
             <textarea name="alamat" placeholder="Alamat" class="border p-2 w-full mb-2"><?= $data['alamat'] ?></textarea>
             <input type="text" name="no_hp" value="<?= $data['no_hp'] ?>" placeholder="No HP" class="border p-2 w-full mb-2">
             <input type="email" name="email" value="<?= $data['email'] ?>" placeholder="Email" class="border p-2 w-full mb-4">
+            <input type="text" name="provinsi" value="<?= isset($data['provinsi']) ? $data['provinsi'] : '' ?>" placeholder="Provinsi" class="border p-2 w-full mb-2">
+            <input type="text" name="kota" value="<?= isset($data['kota']) ? $data['kota'] : '' ?>" placeholder="Kota" class="border p-2 w-full mb-2">
             </div>
 
             <h2 class="mt-6 font-semibold">Data Ayah</h2>
